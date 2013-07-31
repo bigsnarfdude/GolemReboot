@@ -1,0 +1,12 @@
+hipchat-username="12345_678901"
+hipchat-password="YourPassWord"
+hipchat-nickname="YourNickName"
+
+hipchat-auth-token="HipChatAdminToken"
+
+hipchat-rooms=[
+  {
+    "room":"12345_roomname",
+    "handler":"/user/*"
+  }
+]

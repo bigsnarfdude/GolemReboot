@@ -1,0 +1,10 @@
+src/main/resources/application.conf
+target/*
+project/target
+project/project
+log/*
+nohup.out
+*~
+.idea
+.idea_modules
+src/main/main.iml
