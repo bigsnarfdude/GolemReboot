@@ -19,6 +19,7 @@ scalaVersion := "2.10.2"
 libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.0.2",
   "com.typesafe.akka" %% "akka-actor" % "2.2.0",
+  "com.typesafe.akka" %% "akka-remote" % "2.2.0",
   "org.specs2" %% "specs2" % "2.1-SNAPSHOT" % "test",
   "org.slf4j" % "slf4j-api" % "1.7.5",
   "io.spray" %% "spray-json" % "1.2.5",
