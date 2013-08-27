@@ -3,11 +3,17 @@ package cc.hypo.golem.bot
 import org.jivesoftware.smack._
 import org.jivesoftware.smack.packet._
 import org.jivesoftware.smackx.muc.MultiUserChat
-import akka.actor.ActorSelection
+import akka.actor.{ActorSystem, Props, Actor, ActorSelection}
 
 import hipchat._
 
-class Bot(username: String, password: String, nickname: String, hipchat: Hipchat) {
+class SpeakingActor(val room: Room) extends Actor {
+  def receive = {
+    case (sentence: String) => room.send(sentence)
+  }
+}
+
+class Bot(username: String, password: String, nickname: String, hipchat: Hipchat, system: ActorSystem) {
   val XMPP_URL = "chat.hipchat.com"
   val CONN_PORT = 5222 
   val CONF_URL = "conf.hipchat.com" 
@@ -23,6 +29,8 @@ class Bot(username: String, password: String, nickname: String, hipchat: Hipchat
     val muc = new MultiUserChat(connection, jid)
     val room = Room(jid, muc)
 
+    val speaker = system.actorOf(Props(classOf[SpeakingActor], room), jid)
+
     muc.join(nickname, password)
 
     muc.addMessageListener(new PacketListener {
@@ -32,8 +40,8 @@ class Bot(username: String, password: String, nickname: String, hipchat: Hipchat
             val msg = cc.hypo.golem.bot.hipchat.Message(from = m.getFrom, body = m.getBody)
 
             handlers ! (msg.mentions match {
-              case user.mentionName :: xs if msg.body.trim.startsWith("@") => Asked(message = msg, room = room)
-              case other => Heard(message = msg, room = room)
+              case user.mentionName :: xs if msg.body.trim.startsWith("@") => Asked(message = msg, speaker = speaker)
+              case other => Heard(message = msg, speaker = speaker)
             })
           }
           case packet => {}

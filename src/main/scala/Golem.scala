@@ -25,7 +25,7 @@ object Golem extends App {
     val hipchatAuthToken = conf.getString("hipchat-auth-token")
     val hipchatRooms = conf.getObjectList("hipchat-rooms").asScala
 
-    val bot = new Bot(hipchatUsername, hipchatPassword, hipchatNickname, Hipchat(hipchatAuthToken))
+    val bot = new Bot(hipchatUsername, hipchatPassword, hipchatNickname, Hipchat(hipchatAuthToken), system)
     hipchatRooms.foreach((roomConfig: ConfigObject) =>
       bot.joinRoom(roomConfig.get("room").unwrapped.asInstanceOf[String],
         system.actorSelection(roomConfig.get("handler").unwrapped.asInstanceOf[String]))

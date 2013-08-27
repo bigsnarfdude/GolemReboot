@@ -5,6 +5,7 @@ import org.jivesoftware.smackx.muc.MultiUserChat
 import dispatch._, Defaults._
 import spray.json._
 import spray.json.DefaultJsonProtocol._
+import akka.actor.ActorRef
 
 case class Room(jid: String, muc: MultiUserChat) {
   def send(msg: String) = {
@@ -36,5 +37,5 @@ case class Message(from: String, body: String) {
   def bodyWithoutFirstMention: String = body.replaceFirst("@\\w+", "").trim
 }
 
-case class Heard(message: Message, room: Room)
-case class Asked(message: Message, room: Room)
+case class Heard(message: Message, speaker: ActorRef)
+case class Asked(message: Message, speaker: ActorRef)
