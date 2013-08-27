@@ -1,3 +1,6 @@
+# if not master, it will serve as remote actor provider.
+node-type="master"
+
 hipchat-username="12345_678901"
 hipchat-password="YourPassWord"
 hipchat-nickname="YourNickName"
