@@ -4,6 +4,13 @@ hipchat-nickname="YourNickName"
 
 hipchat-auth-token="HipChatAdminToken"
 
+powerups = [
+  {
+    "class": "cc.hypo.golem.bot.powerup.Echo",
+    "actorName": "echo"
+  }
+]
+
 hipchat-rooms=[
   {
     "room":"12345_roomname",

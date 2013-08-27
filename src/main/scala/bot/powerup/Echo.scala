@@ -1,4 +1,4 @@
-package cc.hypo.golem.bot.weapon
+package cc.hypo.golem.bot.powerup
 
 import akka.actor.Actor
 import cc.hypo.golem.bot.hipchat._
