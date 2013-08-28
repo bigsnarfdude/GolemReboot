@@ -1,10 +1,11 @@
 package cc.hypo.golem.bot.hipchat
 
 import org.jivesoftware.smackx.muc.MultiUserChat
+import play.api.libs.json._
+import play.api.libs.ws.{Response, WS}
+import scala.concurrent._
+import scala.concurrent.duration._
 
-import dispatch._, Defaults._
-import spray.json._
-import spray.json.DefaultJsonProtocol._
 import akka.actor.ActorRef
 
 case class Room(jid: String, muc: MultiUserChat) {
@@ -19,14 +20,12 @@ case class HipchatUser(uid: String, name: String, email: String, mentionName: St
 case class Hipchat(authToken: String) {
 
   def users: Seq[HipchatUser] = {
-    val hipchatList = Http(url(s"https://api.hipchat.com/v1/users/list?format=json&auth_token=$authToken") OK as.String)
-    val respJson = hipchatList().asJson.convertTo[Map[String, List[JsObject]]]
-    val userJsonList: Seq[JsObject] = respJson("users")
+    val hipchatListF: Future[play.api.libs.ws.Response] = WS.url(s"https://api.hipchat.com/v1/users/list?format=json&auth_token=$authToken").get()
+    val resp: Response = Await.result(hipchatListF, 30.seconds)
+    val respJson = Json.parse(resp.body)
 
-    userJsonList.map((u: JsObject) =>
-      u.getFields("user_id", "name", "email", "mention_name") match {
-      case Seq(JsNumber(uid), JsString(name), JsString(email), JsString(mentionedName)) => HipchatUser(uid.toString, name, email, mentionedName)
-    })
+    for (u <- (respJson \ "users").as[Seq[Map[String, JsValue]]])
+    yield HipchatUser(u("user_id").as[Long].toString, u("name").as[String], u("email").as[String], u("mention_name").as[String])
   }
 }
 

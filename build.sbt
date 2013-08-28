@@ -20,15 +20,13 @@ libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.0.2",
   "com.typesafe.akka" %% "akka-actor" % "2.2.0",
   "com.typesafe.akka" %% "akka-remote" % "2.2.0",
+  "play" %% "play" % "2.1.3",
   "org.specs2" %% "specs2" % "2.1-SNAPSHOT" % "test",
   "org.slf4j" % "slf4j-api" % "1.7.5",
-  "io.spray" %% "spray-json" % "1.2.5",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
 //  "ch.qos.logback" % "logback-classic" % "1.0.9",
   "com.typesafe.slick" %% "slick" % "1.0.1",
   "mysql" % "mysql-connector-java" % "5.1.22",
-  "net.databinder.dispatch" %% "dispatch-core" % "0.11.0",
-  "io.spray" %%  "spray-json" % "1.2.5",
   "org.igniterealtime.smack" % "smack" % "3.2.1",
   "org.igniterealtime.smack" % "smackx" % "3.2.1"
 )
