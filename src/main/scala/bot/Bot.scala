@@ -37,10 +37,12 @@ class Bot(username: String, password: String, nickname: String, hipchat: Hipchat
       def processPacket(p: Packet) {
         p match {
           case m: org.jivesoftware.smack.packet.Message => {
-            if (m.getFrom.split("/").drop(1).mkString("/") == user.name) {
+            val fullname = m.getFrom.split("/").drop(1).mkString("/")
+            if (fullname == user.name) {
               // ignore bot's message
             } else {
-              val msg = cc.hypo.golem.bot.hipchat.Message(from = m.getFrom, body = m.getBody)
+              val fromName = hipchat.users.find(u => u.name == fullname).map(u => "@" + u.mentionName).getOrElse(fullname)
+              val msg = cc.hypo.golem.bot.hipchat.Message(from = fromName, body = m.getBody)
 
               handlers ! (msg.mentions match {
                 case user.mentionName :: xs if msg.body.trim.startsWith("@") => Asked(message = msg, speaker = speaker)
