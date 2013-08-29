@@ -19,8 +19,6 @@ case class Gist(val token: String) {
     val respF = WS.url("https://api.github.com/gists").withHeaders("Authorization" -> s"token $token").post(jsonStringForGist(description, isPublic, files))
 
     val resp = Await.result(respF, 30.seconds)
-    println("resp: " + resp.body)
-
     val url = (Json.parse(resp.body) \ "html_url").as[String]
     Success(url)
   }
