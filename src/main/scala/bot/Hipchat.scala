@@ -18,14 +18,17 @@ case class HipchatUser(uid: String, name: String, email: String, mentionName: St
 
 
 case class Hipchat(authToken: String) {
+  var cachedUsers: Seq[HipchatUser] = null
 
   def users: Seq[HipchatUser] = {
-    val hipchatListF: Future[play.api.libs.ws.Response] = WS.url(s"https://api.hipchat.com/v1/users/list?format=json&auth_token=$authToken").get()
-    val resp: Response = Await.result(hipchatListF, 30.seconds)
-    val respJson = Json.parse(resp.body)
-
-    for (u <- (respJson \ "users").as[Seq[Map[String, JsValue]]])
-    yield HipchatUser(u("user_id").as[Long].toString, u("name").as[String], u("email").as[String], u("mention_name").as[String])
+    if (cachedUsers == null) {
+      val hipchatListF: Future[play.api.libs.ws.Response] = WS.url(s"https://api.hipchat.com/v1/users/list?format=json&auth_token=$authToken").get()
+      val resp: Response = Await.result(hipchatListF, 30.seconds)
+      val respJson = Json.parse(resp.body)
+      cachedUsers = for (u <- (respJson \ "users").as[Seq[Map[String, JsValue]]])
+        yield HipchatUser(u("user_id").as[Long].toString, u("name").as[String], u("email").as[String], u("mention_name").as[String])
+    }
+    cachedUsers
   }
 }
 
