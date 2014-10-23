@@ -21,7 +21,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor" % "2.2.0",
   "com.typesafe.akka" %% "akka-remote" % "2.2.0",
   "play" %% "play" % "2.1.3",
-  "org.specs2" %% "specs2" % "2.1-SNAPSHOT" % "test",
+  "org.specs2" % "specs2_2.10" % "2.1.1" % "test",
   "org.slf4j" % "slf4j-api" % "1.7.5",
   "org.slf4j" % "slf4j-nop" % "1.6.4",
 //  "ch.qos.logback" % "logback-classic" % "1.0.9",

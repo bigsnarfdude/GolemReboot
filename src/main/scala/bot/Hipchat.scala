@@ -14,7 +14,7 @@ case class Room(jid: String, muc: MultiUserChat) {
   }
 }
 
-case class HipchatUser(uid: String, name: String, email: String, mentionName: String)
+case class HipchatUser(uid: String, name: String, mentionName: String)
 
 
 case class Hipchat(authToken: String) {
@@ -22,12 +22,16 @@ case class Hipchat(authToken: String) {
 
   def users: Seq[HipchatUser] = {
     if (cachedUsers == null) {
-      val hipchatListF: Future[play.api.libs.ws.Response] = WS.url(s"https://api.hipchat.com/v1/users/list?format=json&auth_token=$authToken").get()
+      
+      val target = s"https://api.hipchat.com/v2/user?format=json&auth_token=$authToken"
+      val hipchatListF: Future[play.api.libs.ws.Response] = WS.url(target).get()
       val resp: Response = Await.result(hipchatListF, 30.seconds)
       val respJson = Json.parse(resp.body)
-      cachedUsers = for (u <- (respJson \ "users").as[Seq[Map[String, JsValue]]])
-        yield HipchatUser(u("user_id").as[Long].toString, u("name").as[String], u("email").as[String], u("mention_name").as[String])
+
+      cachedUsers = for (u <- (respJson \ "items").as[Seq[Map[String, JsValue]]])
+        yield HipchatUser(u("id").as[Int].toString, u("name").as[String], u("mention_name").as[String])
     }
+    println("cached users: " + cachedUsers)
     cachedUsers
   }
 }

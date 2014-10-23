@@ -20,11 +20,13 @@ class Bot(username: String, password: String, nickname: String, hipchat: Hipchat
 
   val connection: XMPPConnection = new XMPPConnection(new ConnectionConfiguration(XMPP_URL, CONN_PORT))
   connection.connect()
+  
   connection.login(username, password, "bot")
 
   val user: HipchatUser = hipchat.users.find(u => u.name == nickname).get
 
   def joinRoom(roomName: String, handlers: ActorSelection) = {
+    println("trying to join room")
     val jid = if (roomName.contains("@")) roomName else s"$roomName@$CONF_URL"
     val muc = new MultiUserChat(connection, jid)
     val room = Room(jid, muc)
