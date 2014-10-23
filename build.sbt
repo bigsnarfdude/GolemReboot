@@ -2,9 +2,9 @@ import AssemblyKeys._
 
 assemblySettings
 
-name := "Golem"
+name := "Golem2"
 
-version := "1.0"
+version := "1.2"
 
 resolvers ++= Seq(
   "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases",
@@ -14,13 +14,13 @@ resolvers ++= Seq(
   "Spray Repo" at "http://repo.spray.io/"
 )
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.0.2",
-  "com.typesafe.akka" %% "akka-actor" % "2.2.0",
-  "com.typesafe.akka" %% "akka-remote" % "2.2.0",
-  "play" %% "play" % "2.1.3",
+  "com.typesafe.akka" %% "akka-actor" % "2.3.6",
+  "com.typesafe.akka" %% "akka-remote" % "2.3.6",
+  "play" %% "play" % "2.1.5",
   "org.specs2" % "specs2_2.10" % "2.1.1" % "test",
   "org.slf4j" % "slf4j-api" % "1.7.5",
   "org.slf4j" % "slf4j-nop" % "1.6.4",

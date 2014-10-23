@@ -31,7 +31,6 @@ case class Hipchat(authToken: String) {
       cachedUsers = for (u <- (respJson \ "items").as[Seq[Map[String, JsValue]]])
         yield HipchatUser(u("id").as[Int].toString, u("name").as[String], u("mention_name").as[String])
     }
-    println("cached users: " + cachedUsers)
     cachedUsers
   }
 }
