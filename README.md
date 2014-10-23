@@ -1,4 +1,4 @@
-## 1. copy and configure the configuration file in main.scala.resources
+## 1. copy and configure the configuration file in src/main/resources
 
 `
 <<<<<<<<<<<<<<<< inside look >>>>>>>>>>>>>>>>>>>>>>>
