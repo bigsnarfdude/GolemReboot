@@ -15,8 +15,11 @@ class Echo extends Actor {
     }
 
     case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("dns ") => {
-      speaker ! (msg.bodyWithoutFirstMention.substring(7))
+      speaker ! (msg.bodyWithoutFirstMention.substring(4))
     }
 
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("emo ") => {
+      speaker ! (msg.bodyWithoutFirstMention.substring(4))
+    }
   }
 }
