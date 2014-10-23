@@ -1,4 +1,4 @@
-# 1. copy and configure the configuration file in main.scala.resources
+## 1. copy and configure the configuration file in main.scala.resources
 
 `
 <<<<<<<<<<<<<<<< inside look >>>>>>>>>>>>>>>>>>>>>>>
@@ -24,6 +24,6 @@ hipchat-rooms=[
 
 `
 
-# 2. sbt run
+## 2. sbt run
 
-# 3. @Jane Smith echo "some message to get echo'd back to yourself"
+## 3. @Jane Smith echo "some message to get echo'd back to yourself"
