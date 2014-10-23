@@ -1,6 +1,6 @@
 ## 1. copy and configure the configuration file in src/main/resources
 
-`
+```
 <<<<<<<<<<<<<<<< inside look >>>>>>>>>>>>>>>>>>>>>>>
 
 hipchat-username="231018_1234678"
@@ -22,7 +22,7 @@ hipchat-rooms=[
   }
 ]
 
-`
+```
 
 ## 2. sbt run
 
