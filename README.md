@@ -1,3 +1,5 @@
+## Screenshot of FlowBot in action
+
 ![alt text][logo]
 [logo]: https://raw.githubusercontent.com/bigsnarfdude/GolemReboot/master/Screen%20Shot%202014-10-25%20at%2012.09.30%20AM.png "FlowBot Screenshot"
 
