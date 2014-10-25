@@ -17,7 +17,7 @@ resolvers ++= Seq(
 scalaVersion := "2.10.4"
 
 libraryDependencies ++= Seq(
-  "com.typesafe" % "config" % "1.0.2",
+  "com.typesafe" % "config" % "1.2.1",
   "com.typesafe.akka" %% "akka-actor" % "2.3.6",
   "com.typesafe.akka" %% "akka-remote" % "2.3.6",
   "play" %% "play" % "2.1.5",
