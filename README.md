@@ -3,7 +3,7 @@
 ![alt text][logo]
 [logo]: https://raw.githubusercontent.com/bigsnarfdude/GolemReboot/master/Screen%20Shot%202014-10-25%20at%2012.09.30%20AM.png "FlowBot Screenshot"
 
-## 1. copy and configure the configuration file in src/main/resources
+### 1. copy and configure the configuration file in src/main/resources
 
 ```
 <<<<<<<<<<<<<<<< inside look >>>>>>>>>>>>>>>>>>>>>>>
@@ -29,6 +29,6 @@ hipchat-rooms=[
 
 ```
 
-## 2. sbt run
+### 2. sbt run
 
-## 3. @Jane Smith echo "some message to get echo'd back to yourself"
+### 3. @Jane Smith echo "some message to get echo'd back to yourself"
