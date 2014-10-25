@@ -41,7 +41,6 @@ class Bot(username: String, password: String, nickname: String, hipchat: Hipchat
           case m: org.jivesoftware.smack.packet.Message => {
             val fullname = m.getFrom.split("/").drop(1).mkString("/")
             if (fullname == user.name) {
-              // ignore bot's message
             } else {
               val fromName = hipchat.users.find(u => u.name == fullname).map(u => "@" + u.mentionName).getOrElse(fullname)
               val msg = cc.hypo.golem.bot.hipchat.Message(from = fromName, body = m.getBody)

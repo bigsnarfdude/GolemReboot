@@ -13,10 +13,11 @@ object Golem extends App {
   val system = ActorSystem("Golem")
 
   if (conf.getString("node-type") == "master") {
-    println("powerups")
+    println("flowbot setup")
     val powerups = conf.getObjectList("powerups").asScala.map((powerupConfig: ConfigObject) => {
       val clazz = Class.forName(powerupConfig.get("class").unwrapped().asInstanceOf[String])
       val powerupName = powerupConfig.get("actorName").unwrapped().asInstanceOf[String]
+      println(powerupName)
       system.actorOf(Props(clazz), powerupName)
     })
     
