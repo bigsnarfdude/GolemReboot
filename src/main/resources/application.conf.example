@@ -1,11 +1,13 @@
 # if not master, it will serve as remote actor provider.
 node-type="master"
 
-hipchat-username="12345_678901"
-hipchat-password="YourPassWord"
-hipchat-nickname="YourNickName"
-
-hipchat-auth-token="HipChatAdminToken"
+# http://help.hipchat.com/knowledgebase/articles/64377-xmpp-jabber-support-details
+# http://help.hipchat.com/knowledgebase/articles/64359-running-a-hipchat-bot
+# https://www.hipchat.com/account/xmpp
+hipchat-username="231018_1234678"
+hipchat-password="yourSecretPassword"
+hipchat-nickname="Jane Smith"
+hipchat-auth-token="asdfassjKtb0123WcAgqlkjjgsb3qpoiopiI"
 
 powerups = [
   {
@@ -16,7 +18,7 @@ powerups = [
 
 hipchat-rooms=[
   {
-    "room":"12345_roomname",
+    "room":"231018_test",
     "handler":"/user/*"
   }
 ]
