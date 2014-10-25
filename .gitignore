@@ -1,5 +1,6 @@
 src/main/resources/application.conf
 target/*
+*/target/*
 project/target
 project/project
 log/*
