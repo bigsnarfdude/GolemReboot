@@ -22,6 +22,9 @@ hipchat-rooms=[
   }
 ]
 
+![alt text][logo]
+[logo]: https://raw.github.com/bigsnarfdude/PythonSystemAdminTools/master/Screen%20Shot%202012-12-10%20at%204.09.00%20PM.png "FlowBot Screenshot"
+
 ```
 
 ## 2. sbt run
