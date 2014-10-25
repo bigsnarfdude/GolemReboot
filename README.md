@@ -1,5 +1,5 @@
 ![alt text][logo]
-[logo]: https://raw.github.com/bigsnarfdude/PythonSystemAdminTools/master/Screen%20Shot%202012-12-10%20at%204.09.00%20PM.png "FlowBot Screenshot"
+[logo]: https://raw.githubusercontent.com/bigsnarfdude/GolemReboot/master/Screen%20Shot%202014-10-25%20at%2012.09.30%20AM.png "FlowBot Screenshot"
 
 ## 1. copy and configure the configuration file in src/main/resources
 
