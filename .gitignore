@@ -5,6 +5,9 @@ project/target
 project/project
 log/*
 nohup.out
+src/main/target/
+src/target/
+project/target/g
 *~
 .idea
 .idea_modules
