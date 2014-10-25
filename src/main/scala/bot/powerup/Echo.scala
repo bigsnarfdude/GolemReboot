@@ -21,5 +21,22 @@ class Echo extends Actor {
     case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("emo ") => {
       speaker ! (msg.bodyWithoutFirstMention.substring(4))
     }
+
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("command scp get") => {
+      speaker ! (msg.scpExampleGetFile)
+    }
+
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("command scp put") => {
+      speaker ! (msg.scpExamplePutFile)
+    }
+
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("command ssh") => {
+      speaker ! (msg.sshExample)
+    }
+
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("help") => {
+      speaker ! (msg.help)
+    }
+
   }
 }
