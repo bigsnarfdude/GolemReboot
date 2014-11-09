@@ -45,6 +45,20 @@ case class Message(from: String, body: String) {
   def scpExampleGetFile: String = "scp -i privateKey.pem ubuntu@10.11.12.13:/home/ubuntu/getThisFile /path/toFile/localhost"
   def scpExamplePutFile: String = "scp -i privateKey.pem /path/toPutFile/localhost ubuntu@10.11.12.13:/home/ubuntu/getThisFile"
 
+
+  def getStock: String = {
+    val urlBegin = "http://finance.yahoo.com/q?s="
+    val urlRequest = body.split("[^@\\w]").toList(2)
+    val urlEnd = "&q1=1"
+    val url = urlBegin + urlRequest + urlEnd
+    val result = scala.io.Source.fromURL(url).mkString
+    val patternBegin = """<span id="yfs_l84_"""
+    val patternEnd = """">.+?</span>"""
+    val pattern = (patternBegin + urlRequest + patternEnd).r
+    val allMatches = pattern.findAllMatchIn(result)
+    allMatches.next().toString.split(">")(1).split("<")(0)
+  }
+  
   def help: String =
     """
       |incident response checklists

@@ -77,6 +77,10 @@ class Echo extends Actor {
       speaker ! (msg.help)
     }
 
+    case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("stock ") => {
+      speaker ! (msg.getStock)
+    }
+
     case Asked(msg, speaker) if msg.bodyWithoutFirstMention.startsWith("image") => {
       speaker ! (msg.help)
     }
